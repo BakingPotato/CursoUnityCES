@@ -18,11 +18,17 @@ public class GameManager : MonoBehaviour
 
 	private static GameManager _instance;
 
+	public int round = 0;
+
 	[Header("Coins")]
 	public GameObject coin_prefab;
-	public GameObject coins_object;
+	public GameObject coins_parent;
 	private int coin_count = 0;
 
+	[Header("Evil Coins")]
+	public GameObject evil_coin_prefab;
+	public GameObject evil_coins_parent;
+	public int max_evil_coins = 9;
 
 	[Header("UI")]
 	[SerializeField] TMP_Text ui_coins;
@@ -39,7 +45,7 @@ public class GameManager : MonoBehaviour
 
 	private void Update()
 	{
-		if(coins_object.transform.childCount == 0)
+		if(coins_parent.transform.childCount == 0)
 		{
 			GenerateMoreCoins();
 		}	
@@ -47,12 +53,20 @@ public class GameManager : MonoBehaviour
 
 	private void GenerateMoreCoins()
 	{
-		int coin_number = Random.Range(9, 24);
+		int coin_number = Random.Range(12, 24);
 
 		for (int i = 0; i < coin_number; i++)
 		{
-			Instantiate(coin_prefab, new Vector3(Random.Range(8f, -8.2f), 0, Random.Range(4.3f, -4.45f)), Quaternion.identity, coins_object.transform);
+			Instantiate(coin_prefab, new Vector3(Random.Range(8f, -8.2f), 0, Random.Range(4.3f, -4.45f)), Quaternion.identity, coins_parent.transform);
 		}
+
+		//Cada 3 rondas, invocar nueva moneda malvada hasta que lleguemos al número máximo
+		if(round%3 == 0 && evil_coins_parent.transform.childCount < max_evil_coins)
+        {
+			Instantiate(evil_coin_prefab, new Vector3(Random.Range(8f, -8.2f), 0, Random.Range(4.3f, -4.45f)), Quaternion.identity, evil_coins_parent.transform);
+		}
+
+		round++;
 	}
 
 	public void updateCoins()

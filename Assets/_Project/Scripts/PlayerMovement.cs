@@ -4,10 +4,27 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-	public float speed;
 	public Rigidbody rb;
 
-	void Update()
+	[Header("Speeds")]
+	public float normal_speed = 8;
+	public float extra_speed = 12;
+	private float actual_speed;
+
+	[Header("Impulse")]
+	public float impulse_duration = 0.75f;
+
+	private Vector3 direction;
+
+
+	Coroutine impulse = null;
+
+    private void Start()
+    {
+		actual_speed = normal_speed;
+    }
+
+    void Update()
 	{
 		GetMovementInput();
 	}
@@ -18,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 		float horizontal = Input.GetAxisRaw("Horizontal");
 		float vertical = Input.GetAxisRaw("Vertical");
 
-		Vector3 direction = new Vector3(horizontal, 0, vertical).normalized;
+		direction = new Vector3(horizontal, 0, vertical).normalized;
 
 		//Aplicamos el normalized para que los diagonales no sean m�s r�pido
 		//Vector2 inputDirection = playerActions.Player.Move.ReadValue<Vector2>();
@@ -30,7 +47,25 @@ public class PlayerMovement : MonoBehaviour
 	private void MovePlayer(Vector3 direction)
 	{
 		rb.angularVelocity = Vector3.zero;
-		rb.velocity = direction * speed;
+		rb.velocity = direction * actual_speed;
+	}
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Coin")
+        {
+			if (impulse != null)
+				StopCoroutine(impulse);
+			impulse = StartCoroutine(impulseCouroutine());
+		}
+	}
+
+	IEnumerator  impulseCouroutine()
+    {
+		actual_speed = extra_speed;
+		yield return new WaitForSeconds(impulse_duration);
+		actual_speed = normal_speed;
+		impulse = null;
 	}
 
 	//private void StopMovement()

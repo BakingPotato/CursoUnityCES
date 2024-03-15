@@ -11,14 +11,13 @@ public class CoinManager : MonoBehaviour
 		GM = GameManager.Instance;
 	}
 
-	private void OnCollisionEnter(Collision collision)
-	{
-		if(collision.gameObject.tag == "Player")
+    private void OnTriggerEnter(Collider other)
+    {
+		if (other.gameObject.tag == "Player")
 		{
 			GM.updateCoins();
 			Destroy(gameObject);
 		}
-
 	}
 
 }
