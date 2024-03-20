@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -31,7 +32,7 @@ public class GameManager : MonoBehaviour
 	public int max_evil_coins = 9;
 
 	[Header("UI")]
-	[SerializeField] TMP_Text ui_coins;
+	public UIManager_HC ui;
 
 	private void Awake()
 	{
@@ -40,7 +41,8 @@ public class GameManager : MonoBehaviour
 
 	private void Start()
 	{
-		ui_coins.text = "Coins: 0";
+		ui.UpdateCoins(0);
+		ui.UpdateRound(round + 1);
 	}
 
 	private void Update()
@@ -66,12 +68,18 @@ public class GameManager : MonoBehaviour
 			Instantiate(evil_coin_prefab, new Vector3(Random.Range(8f, -8.2f), 0, Random.Range(4.3f, -4.45f)), Quaternion.identity, evil_coins_parent.transform);
 		}
 
-		round++;
-	}
+        ui.UpdateRound(round++);
+    }
 
-	public void updateCoins()
+    public void updateCoins()
 	{
 		coin_count++;
-		ui_coins.text = "Coins: " + coin_count;
-	}
+        ui.UpdateCoins(coin_count);
+    }
+
+    public void restart()
+    {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
+    }
 }
