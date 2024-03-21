@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GM_Blackjack : MonoBehaviour
@@ -281,5 +282,11 @@ public class GM_Blackjack : MonoBehaviour
         IA_money -= IA_bind;
 
         ui.playerWinsText();
+    }
+
+    public void refreshButton()
+    {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
     }
 }
