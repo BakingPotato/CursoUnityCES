@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class GM_Blackjack : MonoBehaviour
 {
 
+    public UIM_Blackjack ui;
+
     [System.Serializable]
     public class Card
     {
@@ -14,7 +16,7 @@ public class GM_Blackjack : MonoBehaviour
     }
 
     public List<Sprite> cards_images;
-    List<Card> cards;
+    List<Card> cards = new List<Card>();
 
     List<Card> player_cards = new List<Card>();
     List<Card> ia_cards = new List<Card>();
@@ -31,17 +33,40 @@ public class GM_Blackjack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        begginingSequence();
+
+        ui.UpdatePMoney(player_money);
         fillCardList();
 
         //Cojemos dos cartas al inicio
-        takeCard_Player();
-        takeCard_Player();
+        StartCoroutine(startGame());
+
+    }
+
+    private void begginingSequence()
+    {
+        ui.moreButtonState(false);
+        ui.stayButtonState(false);
 
         player_bind = 1;
+        IA_bind = 1;
+        ui.UpdateIAMoney(IA_money);
+        ui.UpdatePMoney(player_money);
+        ui.UpdatePBind(player_bind);
+        ui.UpdateIABind(IA_bind);
+    }
+
+    private IEnumerator startGame()
+    {
+        takeCard_Player();
+        yield return new WaitForSeconds(1);
 
         takeCard_IA();
+        yield return new WaitForSeconds(1);
 
-        IA_bind = 1;
+        ui.moreButtonState(true);
+        ui.stayButtonState(true);
+
     }
 
     private void fillCardList()
@@ -51,7 +76,9 @@ public class GM_Blackjack : MonoBehaviour
             Card aux = new Card();
             aux.image = s;
 
-            if (s.name.Contains("1"))
+            if (s.name.Contains("10"))
+                aux.value = 10;
+           else  if (s.name.Contains("1"))
                 aux.value = 1;
             else if (s.name.Contains("2"))
                 aux.value = 2;
@@ -82,6 +109,9 @@ public class GM_Blackjack : MonoBehaviour
         Card actual_card = takeCard();
         player_value += actual_card.value;
         player_cards.Add(actual_card);
+
+        ui.giveCardToPlayer(actual_card.image, player_value);
+
     }
 
     private void takeCard_IA()
@@ -118,12 +148,13 @@ public class GM_Blackjack : MonoBehaviour
             }
         }
 
-
         Card actual_card = takeCard();
         IA_value += actual_card.value;
         ia_cards.Add(actual_card);
 
-        if(IA_value >= 21)
+        ui.giveCardToIA(actual_card.image, IA_value);
+
+        if (IA_value >= 21)
             IA_Stay = true;
     }
 
@@ -142,7 +173,11 @@ public class GM_Blackjack : MonoBehaviour
     {
         player_Stay = true;
 
+        ui.moreButtonState(false);
+        ui.stayButtonState(false);
+
         //Sequencia donde la IA coje hasta ganarte o perder
+        StartCoroutine(IASoloTurn());
     }
 
     //Pedir una carta más
@@ -152,38 +187,53 @@ public class GM_Blackjack : MonoBehaviour
         takeCard_Player();
 
         //Se comprueba si la ia puede pedir más
-        if (player_value == 21)
+        if (player_value >= 21)
         {
             player_Stay = true;
+            ui.moreButtonState(false);
+            ui.stayButtonState(false);
+
+            if (!IA_Stay)
+                StartCoroutine(IASoloTurn());
         }
         else
         {
-            if (player_value > 21)
-            {
-                player_Stay = true;
-            }
-            //desactivamos el boton more
-
             if (!IA_Stay)
                 takeCard_IA();
         }
 
+
+
         checkWinConditions();
+    }
+
+    IEnumerator IASoloTurn()
+    {
+        while (!IA_Stay)
+        {
+            takeCard_IA();
+            checkWinConditions();
+            yield return new WaitForSeconds(1);
+        }
     }
 
     private void checkWinConditions()
     {
-        if (player_Stay && IA_Stay)
+        if (IA_Stay)
         {
-            if (player_value > 21)
+            if(player_value > 21 || IA_value > 21)
             {
-                IAWin();
+                if (player_value > 21)
+                {
+                    IAWin();
+                }
+
+                if (IA_value > 21)
+                {
+                    PlayerWin();
+                }
             }
-            else if (IA_value > 21)
-            {
-                PlayerWin();
-            }
-            else //Jugador e IA estan ambas por debajo de 21, asique todo depende de cual es mayor
+            else
             {
                 if (IA_value == player_value)
                 {
@@ -193,11 +243,16 @@ public class GM_Blackjack : MonoBehaviour
                 {
                     IAWin();
                 }
-                else
+                else if (IA_value < player_value)
                 {
                     PlayerWin();
                 }
             }
+
+            ui.UpdateIAMoney(IA_money);
+            ui.UpdatePMoney(player_money);
+            ui.UpdatePBind(player_bind);
+            ui.UpdateIABind(IA_bind);
         }
     }
 
@@ -206,19 +261,25 @@ public class GM_Blackjack : MonoBehaviour
     {
         player_money += player_bind;
         IA_money += IA_money;
+
+        ui.drawText();
     }
 
     //IA WINS
     private void IAWin()
     {
-        IA_money += player_bind * 2;
-        player_money -= player_bind * 2;
+        IA_money += IA_bind * 2;
+        player_money -= player_bind;
+
+        ui.IAWinsText();
     }
 
     //PLAYER WINS
     private void PlayerWin()
     {
         player_money += player_bind * 2;
-        IA_money -= player_bind * 2;
+        IA_money -= IA_bind;
+
+        ui.playerWinsText();
     }
 }
