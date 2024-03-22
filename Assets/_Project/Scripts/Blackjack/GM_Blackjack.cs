@@ -31,39 +31,52 @@ public class GM_Blackjack : MonoBehaviour
     bool player_Stay = false;
     bool IA_Stay = false;
 
+    public int round_start = 2;
+
     // Start is called before the first frame update
     void Start()
     {
         begginingSequence();
-
-        ui.UpdatePMoney(player_money);
-        fillCardList();
-
-        //Cojemos dos cartas al inicio
-        StartCoroutine(startGame());
-
     }
 
     private void begginingSequence()
     {
-        ui.moreButtonState(false);
-        ui.stayButtonState(false);
+        player_value = 0;
+        IA_value = 0;
+
+        player_Stay = false;
+        IA_Stay = false;
 
         player_bind = 1;
         IA_bind = 1;
+
+        ui.moreButtonState(false);
+        ui.stayButtonState(false);
+
+
         ui.UpdateIAMoney(IA_money);
         ui.UpdatePMoney(player_money);
         ui.UpdatePBind(player_bind);
         ui.UpdateIABind(IA_bind);
+
+        ui.UpdatePMoney(player_money);
+        fillCardList();
+
+        //Cojemos  cartas al inicio
+        StartCoroutine(startGame());
     }
 
     private IEnumerator startGame()
     {
-        takeCard_Player();
-        yield return new WaitForSeconds(1);
+        for(int i = 0; i < round_start; i++)
+        {
+            takeCard_Player();
+            yield return new WaitForSeconds(1);
 
-        takeCard_IA();
-        yield return new WaitForSeconds(1);
+            takeCard_IA();
+            yield return new WaitForSeconds(1);
+        }
+
 
         ui.moreButtonState(true);
         ui.stayButtonState(true);
@@ -72,6 +85,8 @@ public class GM_Blackjack : MonoBehaviour
 
     private void fillCardList()
     {
+        cards = new List<Card>();
+
         foreach (Sprite s in cards_images)
         {
             Card aux = new Card();
@@ -120,12 +135,13 @@ public class GM_Blackjack : MonoBehaviour
         //Si estamos cerca de 21, usamos este algoritmo para decidir si vuelve a coger o no
         if (!player_Stay)
         {
-            if (21 - IA_value <= 6)
+            if (21 - IA_value <= 7)
             {
                 int random = UnityEngine.Random.Range(0, 2);
                 if (random == 1)
                 {
                     IA_Stay = true;
+                    ui.showIAStays();
                     return;
                 }
             }
@@ -216,11 +232,19 @@ public class GM_Blackjack : MonoBehaviour
             checkWinConditions();
             yield return new WaitForSeconds(1);
         }
+
+        //En caso de que IA_Stay sea true, se mete aqui
+        checkWinConditions();
+
     }
 
     private void checkWinConditions()
     {
-        if (IA_Stay)
+        if ((IA_Stay && player_Stay)
+
+            || (IA_Stay && player_value >= 21) ||
+
+            (IA_value > 21))
         {
             if(player_value > 21 || IA_value > 21)
             {
@@ -250,10 +274,19 @@ public class GM_Blackjack : MonoBehaviour
                 }
             }
 
+            player_bind = 0;
+            IA_bind = 0;
+
+            //Actualizamos los textos
             ui.UpdateIAMoney(IA_money);
             ui.UpdatePMoney(player_money);
             ui.UpdatePBind(player_bind);
             ui.UpdateIABind(IA_bind);
+
+            //Como se acabo la partida, desactivamos los botones de juego y activamos el de refresh
+            ui.moreButtonState(false);
+            ui.stayButtonState(false);
+            ui.refreshButtonState(true);
         }
     }
 
@@ -286,7 +319,12 @@ public class GM_Blackjack : MonoBehaviour
 
     public void refreshButton()
     {
-        string currentSceneName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(currentSceneName);
+
+
+        ui.refreshButtonState(false);
+
+        ui.resetHands();
+        ui.resetStateTexts();
+        begginingSequence();
     }
 }

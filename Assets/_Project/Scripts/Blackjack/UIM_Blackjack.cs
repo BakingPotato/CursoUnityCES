@@ -17,11 +17,13 @@ public class UIM_Blackjack : MonoBehaviour
     public GameObject IA_hand;
 
     public GameObject IA_wins;
+    public GameObject IA_stays;
     public GameObject player_wins;
     public GameObject draw;
 
     public Button moreButton;
     public Button stayButton;
+    public Button refreshButton;
 
 
     public  void UpdatePMoney(int value)
@@ -77,6 +79,11 @@ public class UIM_Blackjack : MonoBehaviour
         draw.SetActive(true);
     }
 
+    public void showIAStays()
+    {
+        IA_stays.SetActive(true);
+    }
+
     public void moreButtonState(bool state)
     {
         moreButton.interactable = state;
@@ -85,5 +92,36 @@ public class UIM_Blackjack : MonoBehaviour
     public void stayButtonState(bool state)
     {
         stayButton.interactable = state;
+    }
+
+    public void refreshButtonState(bool state)
+    {
+        refreshButton.interactable = state;
+    }
+
+    public void resetHands()
+    {
+        foreach(Transform children in player_hand.transform)
+        {
+            Destroy(children.gameObject);
+        }
+
+        foreach (Transform children in IA_hand.transform)
+        {
+            Destroy(children.gameObject);
+        }
+    }
+
+    public void resetStateTexts()
+    {
+        IA_stays.SetActive(false);
+        player_wins.SetActive(false);
+        IA_wins.SetActive(false);
+        draw.SetActive(false);
+
+        IA_value.text = "0";
+        IA_value.text = "0";
+
+
     }
 }
