@@ -4,45 +4,73 @@ using UnityEngine;
 
 public class MovCinematico : MonoBehaviour
 {
-    public GameObject player;
+    //Mov cinematico, sin físicas (titiritero) - Se aplica siempre
+    //sobre la transform
+    public GameObject player;//Null
 
-    public Vector3 v3;
-
-    public float speed = 5;
+    public Vector3 vMov;
 
     // Start is called before the first frame update
     void Start()
     {
+        
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        float ejeX = Input.GetAxisRaw("Horizontal");
-        float ejeZ = Input.GetAxisRaw("Vertical");
+        //Primero identificar el objeto al que vamos a aplicar movimiento
+        //player.transform.Translate((Vector3.right + Vector3.forward) * 3 * Time.deltaTime);
 
-        Vector3 v3aux = Vector3.zero;
-        v3aux.x = ejeX;
-        v3aux.z = ejeZ;
+        //Inputs de usuario
+        float dirX = Input.GetAxisRaw("Horizontal");
+        float dirZ = Input.GetAxisRaw("Vertical");
+        vMov.x = dirX;
+        vMov.z = dirZ;
+        player.transform.Translate(vMov * 3 * Time.deltaTime);
 
-        this.transform.Translate(v3aux * speed * Time.deltaTime);
+        //if (Input.GetButtonDown("Fire1"))
+        //{
 
-        if(Input.GetKey(KeyCode.UpArrow)){
-            transform.Translate(player.transform.forward * speed * Time.deltaTime);
-        }
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            transform.Translate(player.transform.forward * -speed * Time.deltaTime);
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            transform.Translate(player.transform.right * -speed * Time.deltaTime);
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            transform.Translate(player.transform.right * -speed * Time.deltaTime);
-        }
+        //}
+        //if (Input.GetMouseButtonUp(0))//Los botones de Mouse están mapeados con enteros
+        //{//0 clic izq, 1, clic der, 2, clic de la bola o central, 3 lateral izq, 4 lateral der...
+
+        //}
+        //if (Input.GetKey(KeyCode.Escape))
+        //{
+
+        //}
+
+        //3 tipos de gets y 3 subtipos por cada tipo
+        //Botones (mandos), teclas (teclado), ratón - Hay un cuarto tipo touch
+        //if (Input.GetKeyDown(KeyCode.UpArrow))
+        //{
+        //    player.transform.Translate(player.transform.forward * 1); //* Time.deltaTime);
+        //}
+        //else if (Input.GetKey(KeyCode.DownArrow))
+        //{
+        //    player.transform.Translate(player.transform.forward * -3 * Time.deltaTime);
+        //}
+        //if (Input.GetKey(KeyCode.RightArrow)||(Input.GetKey(KeyCode.D)))
+        //{
+        //    player.transform.Translate(player.transform.right * 3 * Time.deltaTime);
+        //}
+        //else if (Input.GetKey(KeyCode.LeftArrow))
+        //{
+        //    player.transform.Translate(player.transform.right * -3 * Time.deltaTime);
+        //}
+
+        //Input.GetKey //Mientras se pulsa - Mientras pulsas la tecla, lo que hay
+        //dentro se ejecuta una vez por frame
+        //Input.GetKeyDown //Se ejecuta sólo una vez
+        //En el frame en el que comienza la pulsación
+        //Input.GetKeyUp //Una sóla vez en el primer frame que dejas de pulsar
+
+
+        //El atributo más importante del rb es el velocity 
+        //
 
     }
 }
