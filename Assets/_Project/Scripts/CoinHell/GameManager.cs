@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
 		coin_count++;
         ui.UpdateCoins(coin_count);
     }
-
+	
     public void restart()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
