@@ -16,6 +16,7 @@ public class EvilManager : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Player")
 		{
+			GM.updateScore();
             GM.ui.GameOver();
 			Destroy(collision.gameObject);
 		}

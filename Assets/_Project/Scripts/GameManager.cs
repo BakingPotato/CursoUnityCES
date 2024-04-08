@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
 
 	[Header("UI")]
 	public UIManager_HC ui;
+	int score = 0;
 
 	private void Awake()
 	{
@@ -42,7 +43,6 @@ public class GameManager : MonoBehaviour
 	private void Start()
 	{
 		ui.UpdateCoins(0);
-		ui.UpdateRound(round + 1);
 	}
 
 	private void Update()
@@ -63,12 +63,13 @@ public class GameManager : MonoBehaviour
 		}
 
 		//Cada 3 rondas, invocar nueva moneda malvada hasta que lleguemos al número máximo
-		if(round%3 == 0 && evil_coins_parent.transform.childCount < max_evil_coins)
+		if(round%2 == 0 && evil_coins_parent.transform.childCount < max_evil_coins)
         {
 			Instantiate(evil_coin_prefab, new Vector3(Random.Range(8f, -8.2f), 0, Random.Range(4.3f, -4.45f)), Quaternion.identity, evil_coins_parent.transform);
 		}
 
-        ui.UpdateRound(round++);
+		round++;
+        ui.UpdateRound(round);
     }
 
     public void updateCoins()
@@ -82,4 +83,11 @@ public class GameManager : MonoBehaviour
         string currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceneName);
     }
+
+    public void updateScore()
+    {
+		score = coin_count * (round);
+		ui.UpdateScore(score);
+
+	}
 }

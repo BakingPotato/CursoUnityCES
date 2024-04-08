@@ -66,7 +66,7 @@ TextureImporter:
       213: -6783193534786238642
     second: HappyBirds_20
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -87,6 +87,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -125,6 +126,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -164,6 +166,30 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -628,6 +654,28 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      HappyBirds_3: -6624166379071666932
+      HappyBirds_2: -5932396233178284339
+      HappyBirds_16: 2683672532481856688
+      HappyBirds_12: 6485101895611973673
+      HappyBirds_15: 1202670217124571190
+      HappyBirds_17: 5082029974480655231
+      HappyBirds_19: 1063336303798317752
+      HappyBirds_13: -5037983217076511889
+      HappyBirds_10: 7236946540425836085
+      HappyBirds_20: -6783193534786238642
+      HappyBirds_18: -2772875976362268433
+      HappyBirds_1: 8686684711559510674
+      HappyBirds_7: -683087214338041537
+      HappyBirds_14: -7282541252073156963
+      HappyBirds_0: -2020345782450606425
+      HappyBirds_6: 1329059992765683899
+      HappyBirds_11: 7078451480674586140
+      HappyBirds_9: 1347845833037751107
+      HappyBirds_4: -6098127091048585219
+      HappyBirds_8: 5354272528617613551
+      HappyBirds_5: -4828045925982630685
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
