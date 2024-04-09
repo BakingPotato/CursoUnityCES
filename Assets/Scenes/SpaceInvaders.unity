@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 611706185}
   - component: {fileID: 611706184}
+  - component: {fileID: 611706186}
   m_Layer: 0
   m_Name: ship
   m_TagString: Untagged
@@ -200,13 +201,28 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 611706183}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.54, z: 0}
+  m_LocalPosition: {x: 0, y: -3.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &611706186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611706183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16b33a9015673504ab876171ce81a14f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 7
+  pea_shoot: {fileID: 4172260458839480922, guid: 8dfd5e0437333b9408032bdab730a750, type: 3}
+  cooldown: 1
 --- !u!1 &728680741
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +247,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728680741}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.86, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -264,7 +280,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086277142}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.582, y: 3.6, z: 0.94309664}
+  m_LocalPosition: {x: -2.5, y: 5, z: 0.94309664}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -440,6 +456,8 @@ MonoBehaviour:
   - {fileID: 7416087036024576200, guid: 6d79debc99424e94199220e28a38fa2d, type: 3}
   - {fileID: 1384869644590677032, guid: ef83522dd0972ad48b4fc6f062f08bf8, type: 3}
   initialEnemyPosition: {fileID: 1086277143}
+  enemy_speed: 0.1
+  moveRight: 1
 --- !u!4 &1496326307
 Transform:
   m_ObjectHideFlags: 0
