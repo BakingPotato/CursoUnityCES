@@ -42,15 +42,14 @@ public class Alien : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(collision.gameObject);
-        GM.updateScore(1);
-        Destroy(this.gameObject);
+        if (collision.CompareTag("Player"))
+        {
+            Destroy(collision.gameObject);
+            GM.updateScore(1);
+            Destroy(this.gameObject);
+        }
     }
 }

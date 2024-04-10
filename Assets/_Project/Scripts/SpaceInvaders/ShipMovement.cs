@@ -13,10 +13,13 @@ public class ShipMovement : MonoBehaviour
     public GameObject pea_shoot;
     public float cooldown = 1;
 
+    GameManager_SI GM;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        GM = GameManager_SI.instance;
         StartCoroutine(Shoot());
     }
 
@@ -58,5 +61,27 @@ public class ShipMovement : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(collision.gameObject);
+            Destroy(this.gameObject);
+
+            GM.ResetGame();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            Destroy(collision.gameObject);
+            Destroy(this.gameObject);
+
+            GM.ResetGame();
+        }
     }
 }
