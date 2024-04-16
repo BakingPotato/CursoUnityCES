@@ -2,25 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipMovementController : MonoBehaviour
+public class ShipController : MonoBehaviour
 {
 
     Rigidbody2D rb;
     RigidbodyConstraints2D originalConstraints;
 
-    //Parametros
+    [Header("Velocity")]
     public float mainThrust = 2.5f;
     public float rotationThrust = 5;
     public float maxVelocity = 5;
     public float thrustingStopForce = 0.01f;
     public float stoppingForce = 0.2f;
 
-    //Cache
+    [Header("State")]
     bool isAccelerating = false;
     bool rotatingRight = false;
     bool rotatingLeft = false;
-    //Estado
 
+    [Header("Prefabs")]
+    public Bullet bulletPrefab;
 
     // Start is called before the first frame update
     void Awake()
@@ -36,6 +37,9 @@ public class ShipMovementController : MonoBehaviour
         checkShipAcceleration();
         checkShipRotation();
         ProcessStop();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+            Shoot();
     }
 
     private void FixedUpdate()
@@ -142,6 +146,23 @@ public class ShipMovementController : MonoBehaviour
         transform.Rotate(Vector3.forward * direction);
         // Descongela las rotaxiones x e y asi como la posicion z 
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+
+    private void Shoot()
+    {
+        Bullet bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+        bullet.Shoot(transform.up);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = 0f;
+
+            Destroy(this.gameObject);
+        }
     }
 
 }

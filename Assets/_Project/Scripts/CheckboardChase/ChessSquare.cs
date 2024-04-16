@@ -7,20 +7,22 @@ public class ChessSquare : MonoBehaviour
 
     Vector3 OG_position;
 
-    GameObject box_up = null;
-    GameObject box_down = null;
-    GameObject box_right = null;
-    GameObject box_left = null;
+    public GameObject box_up = null;
+    public GameObject box_down = null;
+    public GameObject box_right = null;
+    public GameObject box_left = null;
 
     // layerMask Box
     int layerMask;
     RaycastHit hit;
 
     Rigidbody rb;
+    RigidbodyConstraints originalConstraints;
 
     GameManager_Chess GM;
 
     Coroutine falling = null;
+    [HideInInspector] public bool terminated = false;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +30,8 @@ public class ChessSquare : MonoBehaviour
         layerMask = 1 << 6;
 
         rb = GetComponent<Rigidbody>();
+        originalConstraints = rb.constraints;
+
         OG_position = transform.position;
 
         GM = GameManager_Chess.Instance;
@@ -70,19 +74,19 @@ public class ChessSquare : MonoBehaviour
     }
 
 
-    public void makeSquaresFall(Vector3 direction, bool first, float extraTime = 0)
+    public void makeSquaresFall(Vector3 direction, Material color, bool first = false, float extraTime = 0)
     {
         if (!first)
         {
             if (falling == null)
-                falling = StartCoroutine(fall(extraTime));
+                falling = StartCoroutine(fall(extraTime, color));
         }
 
         if (direction == Vector3.forward)
         {
             if (box_up)
             {
-                box_up.GetComponent<ChessSquare>().makeSquaresFall(direction, false, extraTime + 0.2f);
+                box_up.GetComponent<ChessSquare>().makeSquaresFall(direction, color, false, extraTime + 0.2f);
             }
         }
 
@@ -90,15 +94,14 @@ public class ChessSquare : MonoBehaviour
         {
             if (box_down)
             {
-                box_down.GetComponent<ChessSquare>().makeSquaresFall(direction, false, extraTime + 0.2f);
+                box_down.GetComponent<ChessSquare>().makeSquaresFall(direction, color, false, extraTime + 0.2f);
             }
         }
-
         if (direction == Vector3.right)
         {
             if (box_right)
             {
-                box_right.GetComponent<ChessSquare>().makeSquaresFall(direction, false, extraTime + 0.2f);
+                box_right.GetComponent<ChessSquare>().makeSquaresFall(direction, color, false, extraTime + 0.2f);
             }
         }
 
@@ -106,25 +109,37 @@ public class ChessSquare : MonoBehaviour
         {
             if (box_left)
             {
-                box_left.GetComponent<ChessSquare>().makeSquaresFall(direction, false, extraTime + 0.2f);
+                box_left.GetComponent<ChessSquare>().makeSquaresFall(direction, color, false, extraTime + 0.2f);
             }
         }
     }
 
-    IEnumerator fall(float extraTime)
+    IEnumerator fall(float extraTime, Material color)
     {
-        yield return new WaitForSeconds(GM.time_to_fall + extraTime);
+        Material old = GetComponent<MeshRenderer>().material;
+        yield return new WaitForSeconds(extraTime);
+        GetComponent<MeshRenderer>().material = color;
+        yield return new WaitForSeconds(GM.time_to_fall);
+        rb.constraints &= ~RigidbodyConstraints.FreezePositionY;
         rb.useGravity = true;
         yield return new WaitForSeconds(GM.time_falling + extraTime);
 
-        rb.useGravity = false;
-        rb.velocity = Vector3.zero;
-        transform.position = OG_position;
+        if (!terminated)
+        {
+            rb.useGravity = false;
+            rb.constraints = originalConstraints;
+            rb.velocity = Vector3.zero;
+            GetComponent<MeshRenderer>().material = old;
+            transform.position = OG_position;
 
-        falling = null;
+            falling = null;
+        }
     }
 
-
-
-
+    public void instantFall()
+    {
+        rb.constraints &= ~RigidbodyConstraints.FreezePositionY;
+        rb.useGravity = true;
+        Destroy(this.gameObject, GM.time_falling);
+    }
 }

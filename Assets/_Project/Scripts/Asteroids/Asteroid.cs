@@ -6,9 +6,8 @@ public class Asteroid : MonoBehaviour
 {
     public int size = 3;
     GameManager_Asteroid GM;
-    public GameObject son_prefab;
+    public Asteroid son_prefab;
     Vector3 viewportPos;
-    public Vector2 direction;
 
     private void Start()
     {
@@ -17,7 +16,7 @@ public class Asteroid : MonoBehaviour
         GM.asteroid_count++;
     }
 
-    public void startMoving()
+    public void startMoving(Vector2 direction)
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         float spawnSpeed = Random.Range(4f - size, 5f - size);
@@ -41,7 +40,8 @@ public class Asteroid : MonoBehaviour
             {
                 for (int i = 0; i < 2; i++)
                 {
-                    Instantiate(son_prefab, transform.position, Quaternion.identity);
+                    Asteroid asteroid = Instantiate(son_prefab, transform.position, Quaternion.identity);
+                    asteroid.startMoving(new Vector2(Random.Range(-1,1), Random.Range(-1, 1)));
                 }
             }
 

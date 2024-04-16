@@ -21,25 +21,26 @@ public class AsteroidSpawner : MonoBehaviour
 
     public void SpawnAsteroid()
     {
+        Vector2 actual_direction = Vector2.zero;
         float ranX = Random.Range(-rangoX, rangoX);
         float ranY = Random.Range(-rangoY, rangoY);
         Asteroid prefab = Instantiate(asteroid_prefabs[Random.Range(0, asteroid_prefabs.Length)], transform.position + new Vector3(ranX, ranY, 0), Quaternion.identity);
         switch(spawnDirection)
         {
             case direction.Left:
-                prefab.direction = new Vector2(-1, Random.Range(-1, 1));
+                actual_direction = new Vector2(-1, Random.Range(-1, 1));
                 break;
             case direction.Right:
-                prefab.direction = new Vector2(1, Random.Range(-1, 1));
+                actual_direction = new Vector2(1, Random.Range(-1, 1));
                 break;
             case direction.Up:
-                prefab.direction = new Vector2(Random.Range(-1, 1), 1);
+                actual_direction = new Vector2(Random.Range(-1, 1), 1);
                 break;
             case direction.Down:
-                prefab.direction = new Vector2(Random.Range(-1, 1), -1);
+                actual_direction = new Vector2(Random.Range(-1, 1), -1);
                 break;
         }
 
-        prefab.startMoving();
+        prefab.startMoving(actual_direction);
     }
 }
