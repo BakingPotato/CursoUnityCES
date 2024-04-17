@@ -60,7 +60,15 @@ public class ChessPieceMovement : MonoBehaviour
             if(number == 1)
             {
                 dirX = Input.GetAxisRaw("Horizontal");
-                dirZ = Input.GetAxisRaw("Vertical");
+                //eSTE IF LE DA MÁS FLUIDEZ AL MOVIMIENTO
+                if (dirX > 0 || dirX < 0)
+                {
+                    dirZ = 0;
+                }
+                else
+                {
+                    dirZ = Input.GetAxisRaw("Vertical");
+                }
             }
             else
             {
@@ -69,7 +77,8 @@ public class ChessPieceMovement : MonoBehaviour
             }
 
 
-            if(dirX != 0 || dirZ != 0)
+            //Esto limita las diagonales
+            if(((dirX > 0 || dirX < 0) && dirZ == 0) || ((dirZ > 0 || dirZ < 0) && dirX == 0))
             {
                 vMov.x = dirX;
                 vMov.z = dirZ;
