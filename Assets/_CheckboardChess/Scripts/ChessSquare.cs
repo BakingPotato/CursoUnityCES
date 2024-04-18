@@ -22,7 +22,9 @@ public class ChessSquare : MonoBehaviour
     GameManager_Chess GM;
 
     Coroutine falling = null;
-    [HideInInspector] public bool terminated = false;
+    public bool terminated = false;
+    public bool blocked = true;
+    public bool limit = false;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +52,9 @@ public class ChessSquare : MonoBehaviour
         //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.left) * 1, Color.red);
     }
 
+    public bool isFalling() { return falling != null; }
+
+
     private void GetAdjacentSquares()
     {
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 1, layerMask))
@@ -74,19 +79,20 @@ public class ChessSquare : MonoBehaviour
     }
 
 
-    public void makeSquaresFall(Vector3 direction, Material color, bool first = false, float extraTime = 0)
+    public void makeSquaresFall(Vector3 direction, Material color, ChessSquare first, bool isFirst = false, float extraTime = 0)
     {
-        if (!first)
-        {
-            if (falling == null)
-                falling = StartCoroutine(fall(extraTime, color));
-        }
+
+        ChessSquare next_box = null;
+        ChessSquare next_nextbox = null;
+        ChessSquare first_box = first;
 
         if (direction == Vector3.forward)
         {
             if (box_up)
             {
-                box_up.GetComponent<ChessSquare>().makeSquaresFall(direction, color, false, extraTime + 0.2f);
+                next_box = box_up.GetComponent<ChessSquare>();
+                if (next_box.box_up)
+                    next_nextbox = next_box.box_up.GetComponent<ChessSquare>();
             }
         }
 
@@ -94,38 +100,112 @@ public class ChessSquare : MonoBehaviour
         {
             if (box_down)
             {
-                box_down.GetComponent<ChessSquare>().makeSquaresFall(direction, color, false, extraTime + 0.2f);
+                next_box = box_down.GetComponent<ChessSquare>();
+                if (next_box.box_down)
+                    next_nextbox = next_box.box_down.GetComponent<ChessSquare>();
             }
         }
+
         if (direction == Vector3.right)
         {
             if (box_right)
             {
-                box_right.GetComponent<ChessSquare>().makeSquaresFall(direction, color, false, extraTime + 0.2f);
+                next_box = box_right.GetComponent<ChessSquare>();
+                if (next_box.box_right)
+                    next_nextbox = next_box.box_right.GetComponent<ChessSquare>();
             }
         }
+
 
         if (direction == Vector3.left)
         {
             if (box_left)
             {
-                box_left.GetComponent<ChessSquare>().makeSquaresFall(direction, color, false, extraTime + 0.2f);
+                next_box = box_left.GetComponent<ChessSquare>();
+                if (next_box.box_left)
+                    next_nextbox = next_box.box_left.GetComponent<ChessSquare>();
             }
+        }
+
+        //Si hay siguiente
+        if (next_box)
+        {
+            if(!next_box.isFalling() && !next_box.terminated)
+            {
+                checkNextBox(direction, color, first, isFirst, extraTime, next_box);
+            }
+            else if(next_nextbox)
+            {
+                checkNextBox(direction, color, first, isFirst, extraTime, next_nextbox);
+            }
+        }
+        else if(!isFirst)
+        {
+            if (!isFalling())
+                falling = StartCoroutine(fall(extraTime, color, null));
+            first_box.blocked = false;
         }
     }
 
-    IEnumerator fall(float extraTime, Material color)
+    private void checkNextBox(Vector3 direction, Material color, ChessSquare first, bool isFirst, float extraTime, ChessSquare next_box)
+    {
+        ChessSquare first_box;
+        //Si no es el primero empezamos la rutina de caer y pasamos el siguiente respetando el first que nos paso el último
+        if (!isFirst)
+        {
+            if (!isFalling())
+                falling = StartCoroutine(fall(extraTime, color, next_box));
+
+            first_box = first;
+        }
+        else
+        {
+            first_box = next_box;
+        }
+
+        if (!next_box.isFalling() || !next_box.terminated)
+        {
+            if (isFirst && (first.isFalling() || first.terminated))
+            {
+                next_box.makeSquaresFall(direction, color, first_box, true, extraTime + 0.2f);
+            }
+            else
+            {
+                next_box.makeSquaresFall(direction, color, first_box, false, extraTime + 0.2f);
+            }
+
+        }
+        else
+        {
+            first_box.blocked = false;
+        }
+    }
+
+    IEnumerator fall(float extraTime, Material color, ChessSquare next)
     {
         Material old = GetComponent<MeshRenderer>().material;
         yield return new WaitForSeconds(extraTime);
         GetComponent<MeshRenderer>().material = color;
-        yield return new WaitForSeconds(GM.time_to_fall);
+
+        while (blocked)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        yield return new WaitForSeconds(0.5f);
+        if(next)
+            next.blocked = false;
+
         rb.constraints &= ~RigidbodyConstraints.FreezePositionY;
         rb.useGravity = true;
+
+        extraTime = Mathf.Max(0, extraTime - 0.15f);
         yield return new WaitForSeconds(GM.time_falling + extraTime);
 
+        //Si no ha sido eliminado lo colocamos en su posición inicial
         if (!terminated)
         {
+            blocked = true;
             rb.useGravity = false;
             rb.constraints = originalConstraints;
             rb.velocity = Vector3.zero;
@@ -140,6 +220,6 @@ public class ChessSquare : MonoBehaviour
     {
         rb.constraints &= ~RigidbodyConstraints.FreezePositionY;
         rb.useGravity = true;
-        Destroy(this.gameObject, GM.time_falling);
+        Destroy(this.gameObject, GM.time_falling+3);
     }
 }

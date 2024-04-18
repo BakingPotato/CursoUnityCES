@@ -112,7 +112,8 @@ public class ChessPieceMovement : MonoBehaviour
                     {
                         rb.constraints = originalConstraints;
                         rb.velocity = Vector3.zero;
-                        transform.position = new Vector3(0, 1.043f, 0);
+                        Vector3 newPos = findSquaretoRespawn();
+                        transform.position = new Vector3(newPos.x, 1.043f, newPos.y);
                         canMove = true;
                         rb.useGravity = false;
                         yield return new WaitForSeconds(GM.cooldown_after_falling); //cooldown
@@ -139,7 +140,7 @@ public class ChessPieceMovement : MonoBehaviour
                         Material old = GetComponent<MeshRenderer>().material;
                         GetComponent<MeshRenderer>().material = color;
                         canMove = false;
-                        standing_square.makeSquaresFall(transform.forward, color, true);
+                        standing_square.makeSquaresFall(transform.forward, color, standing_square, true);
                         yield return new WaitForSeconds(GM.cooldown);
                         canMove = true;
                         GetComponent<MeshRenderer>().material = old;
@@ -155,7 +156,7 @@ public class ChessPieceMovement : MonoBehaviour
                         Material old = GetComponent<MeshRenderer>().material;
                         GetComponent<MeshRenderer>().material = color;
                         canMove = false;
-                        standing_square.makeSquaresFall(transform.forward, color, true);
+                        standing_square.makeSquaresFall(transform.forward, color, standing_square, true);
                         yield return new WaitForSeconds(GM.cooldown);
                         canMove = true;
                         GetComponent<MeshRenderer>().material = old;
@@ -179,5 +180,18 @@ public class ChessPieceMovement : MonoBehaviour
         {
             standing_square = null;
         }
+    }
+
+    public Vector3 findSquaretoRespawn()
+    {
+        ChessSquare[] respawnPoints = FindObjectsOfType<ChessSquare>();
+        ChessSquare random = respawnPoints[Random.Range(0, respawnPoints.Length)];
+
+        while(random && (random.blocked == false || random.isFalling() || random.terminated == true))
+        {
+            random = respawnPoints[Random.Range(0, respawnPoints.Length)];
+        }
+
+        return random.gameObject.transform.position;
     }
 }
