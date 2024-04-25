@@ -8,6 +8,8 @@ TagManager:
   - Suelo
   - Muerte
   - Enemy
+  - Foe
+  - PickUp
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
+  - Stairs
   - 
   - 
   - 

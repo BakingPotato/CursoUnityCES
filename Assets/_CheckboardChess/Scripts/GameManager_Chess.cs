@@ -5,7 +5,7 @@ using UnityEngine;
 public  class GameManager_Chess : MonoBehaviour
 {
     [Header("Balanceo")]
-    public float time_to_fall = 1;
+    public float[] time_to_fall = { 0.5f, 1, 1.5f, 2, 2.5f, 3, 3.5f };
     public float time_falling = 2;
     public float cooldown = 1;
     public float cooldown_after_falling = 2;

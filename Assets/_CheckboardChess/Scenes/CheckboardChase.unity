@@ -292,7 +292,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &42299266
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,7 +424,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &45767145
 GameObject:
   m_ObjectHideFlags: 0
@@ -558,7 +556,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &103304519
 GameObject:
   m_ObjectHideFlags: 0
@@ -691,7 +688,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &128911737
 GameObject:
   m_ObjectHideFlags: 0
@@ -1084,7 +1080,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &215729676
 GameObject:
   m_ObjectHideFlags: 0
@@ -1254,7 +1249,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &232684495
 GameObject:
   m_ObjectHideFlags: 0
@@ -1827,7 +1821,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &320393282
 GameObject:
   m_ObjectHideFlags: 0
@@ -1960,7 +1953,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &322495370
 GameObject:
   m_ObjectHideFlags: 0
@@ -2093,7 +2085,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &333495891
 GameObject:
   m_ObjectHideFlags: 0
@@ -2226,7 +2217,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &337163797
 GameObject:
   m_ObjectHideFlags: 0
@@ -2359,7 +2349,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &366279140
 GameObject:
   m_ObjectHideFlags: 0
@@ -2492,7 +2481,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &383122006
 GameObject:
   m_ObjectHideFlags: 0
@@ -2625,7 +2613,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &417312865
 GameObject:
   m_ObjectHideFlags: 0
@@ -2826,7 +2813,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &512042704
 GameObject:
   m_ObjectHideFlags: 0
@@ -2959,7 +2945,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &520372487
 GameObject:
   m_ObjectHideFlags: 0
@@ -3092,7 +3077,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &522301560
 GameObject:
   m_ObjectHideFlags: 0
@@ -3264,7 +3248,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &616350978
 GameObject:
   m_ObjectHideFlags: 0
@@ -3397,7 +3380,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &620783240
 GameObject:
   m_ObjectHideFlags: 0
@@ -3530,7 +3512,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &629137130
 GameObject:
   m_ObjectHideFlags: 0
@@ -3663,7 +3644,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &635602964
 GameObject:
   m_ObjectHideFlags: 0
@@ -3796,7 +3776,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &679493985
 GameObject:
   m_ObjectHideFlags: 0
@@ -3929,7 +3908,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &682423241
 GameObject:
   m_ObjectHideFlags: 0
@@ -4156,7 +4134,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &713766861
 GameObject:
   m_ObjectHideFlags: 0
@@ -4300,7 +4277,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dd6ebe3b71788d43993e78182d19266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time_to_fall: 0.8
+  time_to_fall:
+  - 0.25
+  - 0.25
+  - 1.75
+  - 1.5
+  - 1.25
+  - 1
+  - 0.75
+  - 0.5
   time_falling: 2.8
   cooldown: 1
   cooldown_after_falling: 2
@@ -4452,7 +4437,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &819178460
 GameObject:
   m_ObjectHideFlags: 0
@@ -4585,7 +4569,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &841278272
 GameObject:
   m_ObjectHideFlags: 0
@@ -4870,7 +4853,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &898290781
 GameObject:
   m_ObjectHideFlags: 0
@@ -5003,7 +4985,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &939929137
 GameObject:
   m_ObjectHideFlags: 0
@@ -5136,7 +5117,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &945571378
 GameObject:
   m_ObjectHideFlags: 0
@@ -5345,7 +5325,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &967223685
 GameObject:
   m_ObjectHideFlags: 0
@@ -5478,7 +5457,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1009412184
 GameObject:
   m_ObjectHideFlags: 0
@@ -5611,7 +5589,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1012975425
 GameObject:
   m_ObjectHideFlags: 0
@@ -5744,7 +5721,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1030096368
 GameObject:
   m_ObjectHideFlags: 0
@@ -5877,7 +5853,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1041410352
 GameObject:
   m_ObjectHideFlags: 0
@@ -6010,7 +5985,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1059126666
 GameObject:
   m_ObjectHideFlags: 0
@@ -6497,7 +6471,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1124547473
 GameObject:
   m_ObjectHideFlags: 0
@@ -6630,7 +6603,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1150731004
 GameObject:
   m_ObjectHideFlags: 0
@@ -6763,7 +6735,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1153363675
 GameObject:
   m_ObjectHideFlags: 0
@@ -6993,7 +6964,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1191060993
 GameObject:
   m_ObjectHideFlags: 0
@@ -7240,7 +7210,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1248785335
 GameObject:
   m_ObjectHideFlags: 0
@@ -7373,7 +7342,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1255490155
 GameObject:
   m_ObjectHideFlags: 0
@@ -7506,7 +7474,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1260006315
 GameObject:
   m_ObjectHideFlags: 0
@@ -7819,7 +7786,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1281998745
 GameObject:
   m_ObjectHideFlags: 0
@@ -7952,7 +7918,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1366204474
 GameObject:
   m_ObjectHideFlags: 0
@@ -8085,7 +8050,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1382832997
 GameObject:
   m_ObjectHideFlags: 0
@@ -8431,7 +8395,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1457472584
 GameObject:
   m_ObjectHideFlags: 0
@@ -8564,7 +8527,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1458386048
 GameObject:
   m_ObjectHideFlags: 0
@@ -8773,7 +8735,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1517029702
 GameObject:
   m_ObjectHideFlags: 0
@@ -8906,7 +8867,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1536918350
 GameObject:
   m_ObjectHideFlags: 0
@@ -9039,7 +8999,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1546366615
 GameObject:
   m_ObjectHideFlags: 0
@@ -9360,7 +9319,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1627205675
 GameObject:
   m_ObjectHideFlags: 0
@@ -9493,7 +9451,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1634285024
 GameObject:
   m_ObjectHideFlags: 0
@@ -9661,7 +9618,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1646645782
 GameObject:
   m_ObjectHideFlags: 0
@@ -9794,7 +9750,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1654891427
 GameObject:
   m_ObjectHideFlags: 0
@@ -9927,7 +9882,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1672555662
 GameObject:
   m_ObjectHideFlags: 0
@@ -10060,7 +10014,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1738011861
 GameObject:
   m_ObjectHideFlags: 0
@@ -10193,7 +10146,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1738028070
 GameObject:
   m_ObjectHideFlags: 0
@@ -10326,7 +10278,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1755779853
 GameObject:
   m_ObjectHideFlags: 0
@@ -10573,7 +10524,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1769971514
 GameObject:
   m_ObjectHideFlags: 0
@@ -10706,7 +10656,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1776431950
 GameObject:
   m_ObjectHideFlags: 0
@@ -10954,7 +10903,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1796298780
 GameObject:
   m_ObjectHideFlags: 0
@@ -11087,7 +11035,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1824622353
 GameObject:
   m_ObjectHideFlags: 0
@@ -11220,7 +11167,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1833367783
 GameObject:
   m_ObjectHideFlags: 0
@@ -11430,7 +11376,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &1868138509
 GameObject:
   m_ObjectHideFlags: 0
@@ -11749,7 +11694,6 @@ MonoBehaviour:
   box_right: {fileID: 0}
   box_left: {fileID: 0}
   terminated: 0
-  blocked: 1
 --- !u!1 &2007630212
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,8 +23,6 @@ public class ChessSquare : MonoBehaviour
 
     Coroutine falling = null;
     public bool terminated = false;
-    public bool blocked = true;
-    public bool limit = false;
 
     // Start is called before the first frame update
     void Start()
@@ -79,30 +77,25 @@ public class ChessSquare : MonoBehaviour
     }
 
 
-    public void makeSquaresFall(Vector3 direction, Material color, ChessSquare first, bool isFirst = false, float extraTime = 0)
+    public void makeSquaresFall(Vector3 direction, Material color, bool isFirst = false, float extraTime = 0)
     {
 
         ChessSquare next_box = null;
-        ChessSquare next_nextbox = null;
-        ChessSquare first_box = first;
+        int distance = calculateDistance(direction);
 
         if (direction == Vector3.forward)
         {
             if (box_up)
             {
                 next_box = box_up.GetComponent<ChessSquare>();
-                if (next_box.box_up)
-                    next_nextbox = next_box.box_up.GetComponent<ChessSquare>();
             }
         }
 
-        if(direction == Vector3.back)
+        if (direction == Vector3.back)
         {
             if (box_down)
             {
                 next_box = box_down.GetComponent<ChessSquare>();
-                if (next_box.box_down)
-                    next_nextbox = next_box.box_down.GetComponent<ChessSquare>();
             }
         }
 
@@ -111,108 +104,87 @@ public class ChessSquare : MonoBehaviour
             if (box_right)
             {
                 next_box = box_right.GetComponent<ChessSquare>();
-                if (next_box.box_right)
-                    next_nextbox = next_box.box_right.GetComponent<ChessSquare>();
             }
         }
-
 
         if (direction == Vector3.left)
         {
             if (box_left)
             {
                 next_box = box_left.GetComponent<ChessSquare>();
-                if (next_box.box_left)
-                    next_nextbox = next_box.box_left.GetComponent<ChessSquare>();
             }
+        }
+
+        Debug.Log(this.gameObject.name + ", distancia: " + distance);
+        if (!isFirst)
+        {
+            if (!isFalling())
+                falling = StartCoroutine(fall(GM.time_to_fall[distance], extraTime, color));
         }
 
         //Si hay siguiente
         if (next_box)
         {
-            if(!next_box.isFalling() && !next_box.terminated)
-            {
-                checkNextBox(direction, color, first, isFirst, extraTime, next_box);
-            }
-            else if(next_nextbox)
-            {
-                checkNextBox(direction, color, first, isFirst, extraTime, next_nextbox);
-            }
-        }
-        else if(!isFirst)
-        {
-            if (!isFalling())
-                falling = StartCoroutine(fall(extraTime, color, null));
-            first_box.blocked = false;
+            checkNextBox(direction, color, extraTime, next_box);
         }
     }
 
-    private void checkNextBox(Vector3 direction, Material color, ChessSquare first, bool isFirst, float extraTime, ChessSquare next_box)
+    private int calculateDistance(Vector3 direction)
     {
-        ChessSquare first_box;
-        //Si no es el primero empezamos la rutina de caer y pasamos el siguiente respetando el first que nos paso el último
-        if (!isFirst)
+        int count = 0;
+        GameObject next = this.gameObject;
+        while (next != null)
         {
-            if (!isFalling())
-                falling = StartCoroutine(fall(extraTime, color, next_box));
+            if (direction == Vector3.forward)
+                next = next.GetComponent<ChessSquare>().box_up;
 
-            first_box = first;
-        }
-        else
-        {
-            first_box = next_box;
+            if (direction == Vector3.back)
+                next = next.GetComponent<ChessSquare>().box_down;
+
+            if (direction == Vector3.right)
+                next = next.GetComponent<ChessSquare>().box_right;
+
+            if (direction == Vector3.left)
+                next = next.GetComponent<ChessSquare>().box_left;
+
+            count++;
         }
 
+        return count;
+    }
+
+    private void checkNextBox(Vector3 direction, Material color, float extraTime, ChessSquare next_box)
+    {
         if (!next_box.isFalling() || !next_box.terminated)
         {
-            if (isFirst && (first.isFalling() || first.terminated))
-            {
-                next_box.makeSquaresFall(direction, color, first_box, true, extraTime + 0.2f);
-            }
-            else
-            {
-                next_box.makeSquaresFall(direction, color, first_box, false, extraTime + 0.2f);
-            }
-
-        }
-        else
-        {
-            first_box.blocked = false;
+            next_box.makeSquaresFall(direction, color, false, extraTime + 0.2f);
         }
     }
 
-    IEnumerator fall(float extraTime, Material color, ChessSquare next)
+    IEnumerator fall(float time_to_fall, float extraTime, Material color)
     {
         Material old = GetComponent<MeshRenderer>().material;
+
         yield return new WaitForSeconds(extraTime);
         GetComponent<MeshRenderer>().material = color;
 
-        while (blocked)
-        {
-            yield return new WaitForEndOfFrame();
-        }
-
-        yield return new WaitForSeconds(0.5f);
-        if(next)
-            next.blocked = false;
+        yield return new WaitForSeconds(time_to_fall);
 
         rb.constraints &= ~RigidbodyConstraints.FreezePositionY;
         rb.useGravity = true;
 
-        extraTime = Mathf.Max(0, extraTime - 0.15f);
-        yield return new WaitForSeconds(GM.time_falling + extraTime);
+        yield return new WaitForSeconds(GM.time_falling);
+
 
         //Si no ha sido eliminado lo colocamos en su posición inicial
         if (!terminated)
         {
-            blocked = true;
             rb.useGravity = false;
+            falling = null;
             rb.constraints = originalConstraints;
             rb.velocity = Vector3.zero;
             GetComponent<MeshRenderer>().material = old;
             transform.position = OG_position;
-
-            falling = null;
         }
     }
 

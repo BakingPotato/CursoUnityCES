@@ -140,7 +140,7 @@ public class ChessPieceMovement : MonoBehaviour
                         Material old = GetComponent<MeshRenderer>().material;
                         GetComponent<MeshRenderer>().material = color;
                         canMove = false;
-                        standing_square.makeSquaresFall(transform.forward, color, standing_square, true);
+                        standing_square.makeSquaresFall(transform.forward, color, true);
                         yield return new WaitForSeconds(GM.cooldown);
                         canMove = true;
                         GetComponent<MeshRenderer>().material = old;
@@ -156,7 +156,7 @@ public class ChessPieceMovement : MonoBehaviour
                         Material old = GetComponent<MeshRenderer>().material;
                         GetComponent<MeshRenderer>().material = color;
                         canMove = false;
-                        standing_square.makeSquaresFall(transform.forward, color, standing_square, true);
+                        standing_square.makeSquaresFall(transform.forward, color, true);
                         yield return new WaitForSeconds(GM.cooldown);
                         canMove = true;
                         GetComponent<MeshRenderer>().material = old;
@@ -187,7 +187,7 @@ public class ChessPieceMovement : MonoBehaviour
         ChessSquare[] respawnPoints = FindObjectsOfType<ChessSquare>();
         ChessSquare random = respawnPoints[Random.Range(0, respawnPoints.Length)];
 
-        while(random && (random.blocked == false || random.isFalling() || random.terminated == true))
+        while(random && (random.isFalling() || random.terminated == true))
         {
             random = respawnPoints[Random.Range(0, respawnPoints.Length)];
         }
