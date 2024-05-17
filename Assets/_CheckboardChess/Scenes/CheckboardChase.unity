@@ -4278,15 +4278,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time_to_fall:
-  - 0.25
-  - 0.25
-  - 1.75
-  - 1.5
-  - 1.25
-  - 1
+  - 0
+  - 0.05
+  - 0.1
+  - 0.35
+  - 0.55
   - 0.75
-  - 0.5
+  - 0.95
+  - 1.15
   time_falling: 2.8
+  time_to_fall_increment: 0.2
   cooldown: 1
   cooldown_after_falling: 2
   Grey: {fileID: 2100000, guid: 0405c7f5b97dc4a468c8fc0e1fcd93ef, type: 2}
@@ -11820,10 +11821,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3

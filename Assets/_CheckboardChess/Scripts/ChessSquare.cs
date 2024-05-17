@@ -77,11 +77,23 @@ public class ChessSquare : MonoBehaviour
     }
 
 
-    public void makeSquaresFall(Vector3 direction, Material color, bool isFirst = false, float extraTime = 0)
+    public void makeSquaresFall(Vector3 direction, Material color, bool isFirst = false, int pos = 0, float extraTime = 0)
     {
 
         ChessSquare next_box = null;
-        int distance = calculateDistance(direction);
+        float time_to_fall = 0.0f;
+        int distance = 0;
+
+        if (extraTime == 0)
+        {
+            distance = calculateDistance(direction);
+            time_to_fall = GM.time_to_fall[distance-1];
+            Debug.Log(this.gameObject.name + ", distancia: " + distance);
+        }
+        else
+        {
+            time_to_fall = extraTime + GM.time_to_fall_increment;
+        }
 
         if (direction == Vector3.forward)
         {
@@ -115,17 +127,16 @@ public class ChessSquare : MonoBehaviour
             }
         }
 
-        Debug.Log(this.gameObject.name + ", distancia: " + distance);
         if (!isFirst)
         {
             if (!isFalling())
-                falling = StartCoroutine(fall(GM.time_to_fall[distance], extraTime, color));
+                falling = StartCoroutine(fall(time_to_fall, pos, color));
         }
 
         //Si hay siguiente
         if (next_box)
         {
-            checkNextBox(direction, color, extraTime, next_box);
+            checkNextBox(direction, color, time_to_fall, next_box, pos);
         }
     }
 
@@ -153,19 +164,19 @@ public class ChessSquare : MonoBehaviour
         return count;
     }
 
-    private void checkNextBox(Vector3 direction, Material color, float extraTime, ChessSquare next_box)
+    private void checkNextBox(Vector3 direction, Material color, float extraTime, ChessSquare next_box, int pos)
     {
         if (!next_box.isFalling() || !next_box.terminated)
         {
-            next_box.makeSquaresFall(direction, color, false, extraTime + 0.2f);
+            next_box.makeSquaresFall(direction, color, false, pos + 1, extraTime);
         }
     }
 
-    IEnumerator fall(float time_to_fall, float extraTime, Material color)
+    IEnumerator fall(float time_to_fall, int pos, Material color)
     {
         Material old = GetComponent<MeshRenderer>().material;
 
-        yield return new WaitForSeconds(extraTime);
+        yield return new WaitForSeconds(GM.time_to_fall_increment * pos);
         GetComponent<MeshRenderer>().material = color;
 
         yield return new WaitForSeconds(time_to_fall);

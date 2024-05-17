@@ -95,11 +95,11 @@ public class ChessPieceMovement : MonoBehaviour
     {
         while (hp.getHealth() > 0)
         {
-            if (!standing_square)
+            if (!standing_square || standing_square.isFalling())
             {
                 rb.useGravity = true;
                 yield return new WaitForSeconds(1);
-                if (!standing_square)
+                if (!standing_square || standing_square.isFalling())
                 {
                     canMove = false;
                     rb.constraints &= ~RigidbodyConstraints.FreezePositionY;
@@ -113,7 +113,7 @@ public class ChessPieceMovement : MonoBehaviour
                         rb.constraints = originalConstraints;
                         rb.velocity = Vector3.zero;
                         Vector3 newPos = findSquaretoRespawn();
-                        transform.position = new Vector3(newPos.x, 1.043f, newPos.y);
+                        transform.position = new Vector3(newPos.x, 1.043f, newPos.z);
                         canMove = true;
                         rb.useGravity = false;
                         yield return new WaitForSeconds(GM.cooldown_after_falling); //cooldown
