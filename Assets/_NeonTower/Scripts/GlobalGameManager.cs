@@ -44,10 +44,16 @@ public class GlobalGameManager : MonoBehaviour
 
     public void nextFloor()
     {
-        if(actual_floor < 10)
+        StartCoroutine(switchNextFloor());
+    }
+
+    IEnumerator switchNextFloor()
+    {
+        yield return new WaitForSeconds(2.5f);
+        if (actual_floor < 10)
         {
             actual_floor++;
-            SceneManager.LoadScene("CoinHell_" + actual_floor);
+            SceneManager.LoadScene(actual_floor+1);
         }
         else
         {

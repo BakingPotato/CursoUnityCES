@@ -7,7 +7,7 @@ public class EvilMovementManager : MonoBehaviour
     [SerializeField] Rigidbody rb;
 
     [SerializeField] float speed;
-    Vector3 direction = Vector3.zero;
+    public Vector3 direction = Vector3.zero;
     Vector3  previousPos = Vector3.zero;
 
     bool move = false;
@@ -21,9 +21,13 @@ public class EvilMovementManager : MonoBehaviour
 
     IEnumerator startMoving()
     {
-        yield return new WaitForSeconds(0.9f);
-        Vector3 RandomDir = new Vector3(Random.Range(0, 360), 0, Random.Range(0, 360));
-        direction = RandomDir.normalized;
+        if(direction == Vector3.zero)
+        {
+            yield return new WaitForSeconds(0.9f);
+            Vector3 RandomDir = new Vector3(Random.Range(0, 360), 0, Random.Range(0, 360));
+            direction = RandomDir.normalized;
+        }
+
         rb.AddForce(direction * speed, ForceMode.Force);
 
         previousPos = transform.position;

@@ -17,6 +17,9 @@ public class CoinManager : MonoBehaviour
 		{
 			GM.updateCoins();
 			Destroy(gameObject);
+		}else if (other.gameObject.name.Contains("Static"))
+        {
+			Destroy(gameObject);
 		}
 	}
 

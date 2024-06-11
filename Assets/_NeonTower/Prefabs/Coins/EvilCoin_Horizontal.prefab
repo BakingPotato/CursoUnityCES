@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6208ccb9b612a494a80fd386caf97daa, type: 2}
+  - {fileID: 2100000, guid: 4f13196df78fc7c4e88721f84f3a1514, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -164,6 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 4086052586378652346}
   speed: 6
+  direction: {x: 0, y: 0, z: 0}
 --- !u!1 &6106958133787114218
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,7 +218,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 49c577fa6b63c79478981510d4d930dc, type: 2}
+  - {fileID: 2100000, guid: 2ff0b06d4dbc6854abf11ab9bb44fca4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

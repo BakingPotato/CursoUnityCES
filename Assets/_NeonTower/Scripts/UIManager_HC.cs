@@ -7,11 +7,19 @@ public class UIManager_HC : MonoBehaviour
     public TMP_Text round;
     public TMP_Text coins;
     public TMP_Text score;
+    public TMP_Text thought;
     public GameObject gameOverPanel;
 
     public void UpdateCoins(int coins, int objective)
     {
-        this.coins.text = "Coins : " + coins.ToString() + " / " + objective;
+        if(objective > -1)
+        {
+            this.coins.text = "PK : " + coins.ToString() + " / " + objective;
+        }
+        else
+        {
+            this.coins.text = "PK : " + coins.ToString();
+        }
     }
 
     public void UpdateRound(int round)
@@ -27,6 +35,12 @@ public class UIManager_HC : MonoBehaviour
     public void UpdateScore(int score)
     {
         this.score.text = "Your score: " + score.ToString();
+    }
+
+
+    public void UpdateThought(string thought)
+    {
+        this.thought.text = thought;
     }
 
     public void GameOver()

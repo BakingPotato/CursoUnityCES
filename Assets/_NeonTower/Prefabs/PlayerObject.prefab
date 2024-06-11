@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 5691695948286682252}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5691695948812459912}
   m_RootOrder: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ed13114a0ed92ba4b956f3879fda8169, type: 2}
+  - {fileID: 2100000, guid: 275cb728f0c71f240824b1a053de0e3f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -95,7 +95,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.45
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5691695948482534980
 GameObject:
@@ -140,7 +140,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.9716981, g: 0.4995995, b: 0.95449173, a: 1}
+  m_Color: {r: 0.58431375, g: 0.6509804, b: 0.7137255, a: 1}
   m_Intensity: 4.5
   m_Range: 3
   m_SpotAngle: 30
@@ -271,7 +271,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.55
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5691695949281001139
 GameObject:
@@ -326,7 +326,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e055170955f0fd54b82c012fff697a14, type: 2}
+  - {fileID: 2100000, guid: c2b5d95ebf06fcd4385b5d67e883ceaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

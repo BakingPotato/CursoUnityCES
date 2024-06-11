@@ -28,6 +28,8 @@ public class FloorManager : MonoBehaviour
 
 	public int round = 0;
 
+	private bool changingfloor = false;
+
 	[Header("Coins")]
 	public GameObject coin_prefab;
 	public GameObject coins_parent;
@@ -65,11 +67,16 @@ public class FloorManager : MonoBehaviour
 			GenerateMoreCoins();
 		}	
 
-		if(coin_count > coin_objective)
+		if(coin_objective > -1)
         {
-			deleteEvilCoins();
-			nextFloor();
-        }
+			if (coin_count >= coin_objective && !changingfloor)
+			{
+				changingfloor = true;
+				deleteEvilCoins();
+				nextFloor();
+			}
+		}
+
 	}
 
 	private void GenerateMoreCoins()
@@ -77,10 +84,24 @@ public class FloorManager : MonoBehaviour
 		int coin_number = Random.Range(min_coin_per_round, max_coin_per_round);
 		GameObject aux;
 
-		for (int i = 0; i < coin_number; i++)
-		{
-			Instantiate(coin_prefab, new Vector3(Random.Range(8f, -8.2f), 0, Random.Range(4.3f, -4.45f)), Quaternion.identity, coins_parent.transform);
+		if(coin_objective > -1)
+        {
+			if (coin_count < coin_objective)
+			{
+				for (int i = 0; i < coin_number; i++)
+				{
+					Instantiate(coin_prefab, new Vector3(Random.Range(8f, -8.2f), 0, Random.Range(4.3f, -4.45f)), Quaternion.identity, coins_parent.transform);
+				}
+			}
 		}
+        else
+        {
+			for (int i = 0; i < coin_number; i++)
+			{
+				Instantiate(coin_prefab, new Vector3(Random.Range(8f, -8.2f), 0, Random.Range(4.3f, -4.45f)), Quaternion.identity, coins_parent.transform);
+			}
+		}
+
 
         if (autogenerate)
         {
@@ -93,7 +114,10 @@ public class FloorManager : MonoBehaviour
 		}
 
 		round++;
-        //ui.UpdateRound(round);
+		if (coin_objective <= -1)
+        {
+			ui.UpdateRound(round);
+		}
     }
 
     public void updateCoins()
@@ -110,10 +134,16 @@ public class FloorManager : MonoBehaviour
         }
     }
 	
-    public void restart()
+    public void restart_From_This()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceneName);
+    }
+	
+	public void restart()
+    {
+		GlobalGameManager.Instance.actual_floor = 1;
+		SceneManager.LoadScene("CoinHell_1");
     }
 
     public void updateScore()
@@ -125,6 +155,7 @@ public class FloorManager : MonoBehaviour
 
 	public void nextFloor()
     {
+		ui.UpdateThought(ThoughtsManager.getThought(GlobalGameManager.Instance.actual_floor + 1));
 		GlobalGameManager.Instance.nextFloor();
     }
 }
