@@ -50,7 +50,7 @@ public class GlobalGameManager : MonoBehaviour
     IEnumerator switchNextFloor()
     {
         yield return new WaitForSeconds(2.5f);
-        if (actual_floor < 10)
+        if (actual_floor < 15)
         {
             actual_floor++;
             SceneManager.LoadScene(actual_floor+1);
