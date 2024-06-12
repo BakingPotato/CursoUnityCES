@@ -130,6 +130,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3561210952665093318, guid: 1a7c7c16aa91943489d4d50d40cbb994, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2129669216}
+    - target: {fileID: 3561210952665093318, guid: 1a7c7c16aa91943489d4d50d40cbb994, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3561210952665093318, guid: 1a7c7c16aa91943489d4d50d40cbb994, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: FloorManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6036011840935473301, guid: 1a7c7c16aa91943489d4d50d40cbb994, type: 3}
       propertyPath: m_Name
       value: Canvas

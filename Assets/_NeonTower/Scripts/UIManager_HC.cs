@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager_HC : MonoBehaviour
 {
@@ -9,6 +10,13 @@ public class UIManager_HC : MonoBehaviour
     public TMP_Text score;
     public TMP_Text thought;
     public GameObject gameOverPanel;
+    public GameObject recordPanel;
+
+    [Header("HP")]
+    public GameObject health;
+    public GameObject hp1;
+    public GameObject hp2;
+    public GameObject hp3;
 
     public void UpdateCoins(int coins, int objective)
     {
@@ -41,6 +49,45 @@ public class UIManager_HC : MonoBehaviour
     public void UpdateThought(string thought)
     {
         this.thought.text = thought;
+    }
+
+    public void showNewRecord()
+    {
+        recordPanel.SetActive(true);
+    }
+
+    public void healthVisibility(bool visible)
+    {
+        health.SetActive(visible);
+    }
+
+    public void setHealth(int health)
+    {
+        switch (health)
+        {
+            case 0:
+                hp1.SetActive(false);
+                hp2.SetActive(false);
+                hp3.SetActive(false);
+                break;
+            case 1:
+                hp1.SetActive(true);
+                hp2.SetActive(false);
+                hp3.SetActive(false);
+                break;
+            case 2:
+                hp1.SetActive(true);
+                hp2.SetActive(true);
+                hp3.SetActive(false);
+                break;
+            case 3:
+                hp1.SetActive(true);
+                hp2.SetActive(true);
+                hp3.SetActive(true);
+                break;
+            default:
+                break;
+        }
     }
 
     public void GameOver()

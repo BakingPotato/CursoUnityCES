@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1106,6 +1106,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actual_floor: 1
+  health: 3
+  invincible: 0
 --- !u!1001 &5691695948326184866
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1238,6 +1240,18 @@ PrefabInstance:
     - target: {fileID: 1510780396, guid: 1a7c7c16aa91943489d4d50d40cbb994, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 137
+      objectReference: {fileID: 0}
+    - target: {fileID: 3561210952665093318, guid: 1a7c7c16aa91943489d4d50d40cbb994, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2129669216}
+    - target: {fileID: 3561210952665093318, guid: 1a7c7c16aa91943489d4d50d40cbb994, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3561210952665093318, guid: 1a7c7c16aa91943489d4d50d40cbb994, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: FloorManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6036011840935473301, guid: 1a7c7c16aa91943489d4d50d40cbb994, type: 3}
       propertyPath: m_Name

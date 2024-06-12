@@ -58,6 +58,16 @@ public class FloorManager : MonoBehaviour
 	{
 		ui.UpdateCoins(0, coin_objective);
 		ui.UpdateFloor(GlobalGameManager.Instance.actual_floor);
+
+		if(coin_objective > -1)
+        {
+			ui.healthVisibility(true);
+			ui.setHealth(GlobalGameManager.Instance.health);
+        }
+        else
+        {
+			ui.healthVisibility(false);
+		}
 	}
 
 	private void Update()
@@ -126,6 +136,13 @@ public class FloorManager : MonoBehaviour
         ui.UpdateCoins(coin_count, coin_objective);
     }
 
+	public int takeDamage()
+	{
+		int hp = GlobalGameManager.Instance.take_health();
+		ui.setHealth(hp);
+		return hp;
+	}
+
 	public void deleteEvilCoins()
     {
 		foreach(GameObject evil in evil_coins_list)
@@ -143,13 +160,28 @@ public class FloorManager : MonoBehaviour
 	public void restart()
     {
 		GlobalGameManager.Instance.actual_floor = 1;
+		GlobalGameManager.Instance.health = 3;
 		SceneManager.LoadScene("CoinHell_1");
     }
 
-    public void updateScore()
+	public void menu()
+	{
+		GlobalGameManager.Instance.actual_floor = 1;
+		GlobalGameManager.Instance.health = 3;
+		SceneManager.LoadScene("Starvation_Menu");
+	}
+
+	public void updateScore()
     {
 		score = coin_count * (round);
-		ui.UpdateScore(score);
+		if (coin_objective <= -1)
+		{
+			if (PlayerPrefs.GetInt("HighScore") < score)
+			{
+				PlayerPrefs.SetInt("HighScore", score);
+			}
+			ui.UpdateScore(score);
+		}
 
 	}
 
