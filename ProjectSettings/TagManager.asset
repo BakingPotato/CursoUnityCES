@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - Foe
   - PickUp
+  - evil
   layers:
   - Default
   - TransparentFX

@@ -30,6 +30,8 @@ public class FloorManager : MonoBehaviour
 
 	private bool changingfloor = false;
 
+	private bool gotHit = false;
+
 	[Header("Coins")]
 	public GameObject coin_prefab;
 	public GameObject coins_parent;
@@ -140,12 +142,13 @@ public class FloorManager : MonoBehaviour
 	{
 		int hp = GlobalGameManager.Instance.take_health();
 		ui.setHealth(hp);
+		gotHit = true;
 		return hp;
 	}
 
 	public void deleteEvilCoins()
     {
-		foreach(GameObject evil in evil_coins_list)
+		foreach(GameObject evil in GameObject.FindGameObjectsWithTag("evil"))
         {
 			Destroy(evil);
         }
@@ -188,6 +191,10 @@ public class FloorManager : MonoBehaviour
 	public void nextFloor()
     {
 		ui.UpdateThought(ThoughtsManager.getThought(GlobalGameManager.Instance.actual_floor + 1));
+		if(!gotHit & GlobalGameManager.Instance.health < 3)
+        {
+			GlobalGameManager.Instance.health++;
+		}
 		GlobalGameManager.Instance.nextFloor();
     }
 }

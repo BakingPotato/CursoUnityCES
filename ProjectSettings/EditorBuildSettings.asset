@@ -45,14 +45,26 @@ EditorBuildSettings:
     path: Assets/_NeonTower/Scenes/CoinHell_Rotating_3.unity
     guid: d563aecf134a98f41a65ad6f8804b282
   - enabled: 1
+    path: Assets/_NeonTower/Scenes/CoinHell_Giant_1.unity
+    guid: 5569b554900270940bc4574bbda0823a
+  - enabled: 1
     path: Assets/_NeonTower/Scenes/CoinHell_Random_3.unity
     guid: 8f957f52ae255f1419d2436fe0be06ec
+  - enabled: 1
+    path: Assets/_NeonTower/Scenes/CoinHell_Chaser_1.unity
+    guid: afe19e09aa0be254ba62bbe2508cc350
   - enabled: 1
     path: Assets/_NeonTower/Scenes/CoinHell_Walls_4.unity
     guid: 34f478b65ce2a574b984862e3c3c8db3
   - enabled: 1
-    path: Assets/_NeonTower/Scenes/CoinHell_Giant_1.unity
-    guid: 5569b554900270940bc4574bbda0823a
+    path: Assets/_NeonTower/Scenes/CoinHell_Giant_2.unity
+    guid: fb75d95075fe61047aa586167b76e265
+  - enabled: 1
+    path: Assets/_NeonTower/Scenes/CoinHell_Rotating_4.unity
+    guid: b4b83bd1f77360f45bbe86ded9e44ca8
+  - enabled: 1
+    path: Assets/_NeonTower/Scenes/CoinHell_Laberynth.unity
+    guid: 12f6313acdfc349428c184f9e6995ff2
   - enabled: 1
     path: Assets/_NeonTower/Scenes/CoinHell_Infinite.unity
     guid: a230219f8beb0d144bc2c193f7e02779
