@@ -46,6 +46,10 @@ public class GlobalGameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(SceneManager.GetActiveScene().name == "StarvationMenu")
+        {
+            Destroy(gameObject);
+        }
     }
 
     public int take_health()
@@ -66,20 +70,20 @@ public class GlobalGameManager : MonoBehaviour
     IEnumerator switchNextFloor()
     {
         yield return new WaitForSeconds(1.5f);
-        if (actual_floor < 21)
+        if (actual_floor < 22)
         {
             actual_floor++;
             SceneManager.LoadScene(actual_floor);
         }
         else
         {
-            SceneManager.LoadScene("theTop");
+            SceneManager.LoadScene("Starvation_Menu");
         }
     }
 
     IEnumerator invencibility()
     {
-        yield return StartCoroutine(DoFreeze());
+        //yield return StartCoroutine(DoFreeze());
         PlayerMovement pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         pm.startBlinking();
         invincible = true;

@@ -1410,6 +1410,10 @@ MonoBehaviour:
   thought: {fileID: 6036011842882975802}
   gameOverPanel: {fileID: 1961942343}
   recordPanel: {fileID: 0}
+  health: {fileID: 0}
+  hp1: {fileID: 0}
+  hp2: {fileID: 0}
+  hp3: {fileID: 0}
 --- !u!1 &1961942343
 GameObject:
   m_ObjectHideFlags: 0
@@ -1954,6 +1958,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4260992854730008451, guid: eefbbbbd9eddb734ab05eaa9fa97ebf1, type: 3}
+      propertyPath: m_Volume
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4260992854730008451, guid: eefbbbbd9eddb734ab05eaa9fa97ebf1, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 499163a3fbfc0064f983c080fa8f4290, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eefbbbbd9eddb734ab05eaa9fa97ebf1, type: 3}
 --- !u!1 &2755042807188666089 stripped
@@ -1975,6 +1987,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actual_floor: 1
   health: 3
+  invincible: 0
+  duration: 0.08
 --- !u!1001 &5691695948326184866
 PrefabInstance:
   m_ObjectHideFlags: 0

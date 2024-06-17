@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
 	bool blink = false;
 	Coroutine blinking = null;
 
+	public AudioSource hit;
+
 
 	Coroutine impulse = null;
 

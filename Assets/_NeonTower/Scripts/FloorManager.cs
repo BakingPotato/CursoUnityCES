@@ -191,7 +191,7 @@ public class FloorManager : MonoBehaviour
 	public void nextFloor()
     {
 		ui.UpdateThought(ThoughtsManager.getThought(GlobalGameManager.Instance.actual_floor + 1));
-		if(!gotHit & GlobalGameManager.Instance.health < 3)
+		if(/*!gotHit & */GlobalGameManager.Instance.health < 3)
         {
 			GlobalGameManager.Instance.health++;
 		}

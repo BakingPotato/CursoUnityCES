@@ -67,10 +67,13 @@ EditorBuildSettings:
     guid: 34f478b65ce2a574b984862e3c3c8db3
   - enabled: 1
     path: Assets/_NeonTower/Scenes/CoinHell_Laberynth_3.unity
-    guid: 5367f5e41afefdd47aa05f4f8ea6f8de
+    guid: db47a9b761d510e40b77df83bd01d86a
   - enabled: 1
     path: Assets/_NeonTower/Scenes/CoinHell_Giant_2.unity
     guid: fb75d95075fe61047aa586167b76e265
+  - enabled: 1
+    path: Assets/_NeonTower/Scenes/CoinHell_Laberynth_4.unity
+    guid: 5367f5e41afefdd47aa05f4f8ea6f8de
   - enabled: 1
     path: Assets/_NeonTower/Scenes/CoinHell_Infinite.unity
     guid: a230219f8beb0d144bc2c193f7e02779

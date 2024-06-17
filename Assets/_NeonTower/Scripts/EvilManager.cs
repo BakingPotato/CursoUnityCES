@@ -17,6 +17,7 @@ public class EvilManager : MonoBehaviour
 		if (collision.gameObject.tag == "Player")
 		{
 			GM.updateScore();
+			collision.gameObject.GetComponent<PlayerMovement>().hit.Play();
 			if(GM.coin_objective > -1)
             {
 				int hp = GM.takeDamage();
