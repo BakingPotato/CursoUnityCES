@@ -11,9 +11,9 @@ public static class ThoughtsManager
             case 1:
                 return "I'm starving...";
             case 2:
-                return "I need more...";
+                return "I'm starving...";
             case 3:
-                return "My hunger cannot stop...";
+                return "I need more...";
             case 4:
                 return "I can't stop...";
             case 5:
@@ -21,11 +21,11 @@ public static class ThoughtsManager
             case 6:
                 return "I need more...";
             case 7:
-                return "My soul is starving...";
+                return "On to the next Floor...";
             case 8:
-                return "It's time to feast...";
+                return "My soul is starving...";
             case 9:
-                return "The hole keeps growing bigger...";
+                return "The hunger keeps growing...";
             case 10:
                 return "I need to keep pushing forward...";
             case 11:
@@ -35,17 +35,21 @@ public static class ThoughtsManager
             case 13:
                 return "Higher...";
             case 14:
-                return "HIGHER!!!";
+                return "Higher";
             case 15:
-                return "I WON'T STOP!!!";
+                return "Don't stop";
             case 16:
-                return "I NEED MORE!!!";
+                return "More";
             case 17:
-                return "GIVE ME MORE!!!";
+                return "Give me more";
             case 18:
-                return "I WILL DEVOUR EVERYTHING!!!";
+                return "Devour everything";
             case 19:
-                return "TIL THERE'S NOTHING LEFT!!!";
+                return "Everything";
+            case 20:
+                return "Nothing Left";
+            case 21:
+                return "Is that it?";
             default:
                 return "I'm starving...";
         }

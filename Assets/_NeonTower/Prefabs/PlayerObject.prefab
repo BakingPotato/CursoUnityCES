@@ -260,6 +260,7 @@ MonoBehaviour:
   normal_speed: 8
   extra_speed: 13.5
   impulse_duration: 0.2
+  mr: {fileID: 5691695948286682256}
 --- !u!135 &5691695948812459913
 SphereCollider:
   m_ObjectHideFlags: 0

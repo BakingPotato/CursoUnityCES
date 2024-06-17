@@ -16,6 +16,10 @@ public class PlayerMovement : MonoBehaviour
 
 	private Vector3 direction;
 
+	public MeshRenderer mr;
+	bool blink = false;
+	Coroutine blinking = null;
+
 
 	Coroutine impulse = null;
 
@@ -75,4 +79,28 @@ public class PlayerMovement : MonoBehaviour
 	//	//Evitamos que se mueva si ha chocado con otro objeto con colliders y rigidiBody
 	//	rb.angularVelocity = Vector3.zero;
 	//}
+
+	IEnumerator blinkRoutine()
+	{
+		while (blink)
+		{
+            mr.enabled = true;
+			yield return new WaitForSeconds(0.2f);
+            mr.enabled = false;
+            yield return new WaitForSeconds(0.2f);
+        }
+        mr.enabled = true;
+    }
+
+	public void startBlinking()
+	{
+		blink = true;
+		blinking = StartCoroutine(blinkRoutine());
+	}
+
+    public void stopBlinking()
+    {
+        blink = false;
+    }
+
 }

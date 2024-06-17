@@ -9,6 +9,10 @@ public class GlobalGameManager : MonoBehaviour
     public int health = 3;
     public bool invincible = false;
 
+    public float duration = 0.08f;
+    bool _isFrozen;
+    float _pendingFreezeDuration = 0f;
+
     private static GlobalGameManager _instance;
 
     public static GlobalGameManager Instance
@@ -62,7 +66,7 @@ public class GlobalGameManager : MonoBehaviour
     IEnumerator switchNextFloor()
     {
         yield return new WaitForSeconds(1.5f);
-        if (actual_floor < 20)
+        if (actual_floor < 21)
         {
             actual_floor++;
             SceneManager.LoadScene(actual_floor);
@@ -75,8 +79,25 @@ public class GlobalGameManager : MonoBehaviour
 
     IEnumerator invencibility()
     {
+        yield return StartCoroutine(DoFreeze());
+        PlayerMovement pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        pm.startBlinking();
         invincible = true;
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(1.5f);
+        pm.stopBlinking();
         invincible = false;
     }
+
+    IEnumerator DoFreeze()
+    {
+        var original = Time.timeScale;
+        Time.timeScale = 0f;
+
+        yield return new WaitForSecondsRealtime(duration);
+
+        Time.timeScale = original;
+
+    }
+
+
 }

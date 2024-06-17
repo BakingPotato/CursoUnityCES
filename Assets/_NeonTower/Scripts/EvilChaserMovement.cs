@@ -50,6 +50,8 @@ public class EvilChaserMovement : MonoBehaviour
         //La distancia del objeto al objetivo
         Vector3 direction = target.position - _rb.position;
 
+        direction = direction.normalized;
+
         //Normaliza para que la dirección este en 1
         _rb.velocity = direction * speed;
     }
